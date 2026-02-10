@@ -1,77 +1,150 @@
-const trabajadores = ["Juan", "Carlos", "Pedro", "Luis"];
-const reservas = ["08:00", "09:00", "10:00", "11:00"];
+// ===================
+// DATOS SIMULADOS
+// ===================
 
+const trabajadores = ["Juan", "Carlos", "Pedro", "Luis"];
+
+const horas = ["08:00", "09:00", "10:00", "11:00"];
+
+const reservasPorHora = {
+    "08:00": ["Juan", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+    "09:00": [null, "Carlos", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null],
+    "10:00": Array(18).fill(null),
+    "11:00": ["Pedro", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+};
+
+let indiceHoraActual = 0;
+
+// ===================
 // LOGIN
+// ===================
+
 function login(event) {
     event.preventDefault();
 
     const usuario = document.getElementById("usuario").value;
     const rol = document.getElementById("rol").value;
 
-    if (usuario === "") {
+    if (!usuario) {
         document.getElementById("mensaje").textContent = "Usuario inválido";
         return;
     }
 
-    localStorage.setItem("rol", rol);
     localStorage.setItem("usuario", usuario);
+    localStorage.setItem("rol", rol);
 
     if (rol === "jefe") {
-        window.location.href = "jefe.html";
+        window.location.href = "Jefe.html";
     } else {
-        window.location.href = "trabajador.html";
+        window.location.href = "Trabajador.html";
     }
 }
 
+// ===================
 // RESTRICCIÓN POR ROL
+// ===================
+
 function verificarRol(rolEsperado) {
     const rol = localStorage.getItem("rol");
 
     if (rol !== rolEsperado) {
         alert("Acceso no autorizado");
         window.location.href = "index.html";
+        return;
     }
 
     if (rol === "jefe") cargarVistaJefe();
     if (rol === "trabajador") cargarVistaTrabajador();
 }
 
-// VISTA JEFE
+// ===================
+// VISTAS
+// ===================
+
 function cargarVistaJefe() {
-    const listaT = document.getElementById("listaTrabajadores");
-    const listaR = document.getElementById("listaReservas");
-
-    trabajadores.forEach(t => {
-        const li = document.createElement("li");
-        li.textContent = t;
-        listaT.appendChild(li);
-    });
-
-    reservas.forEach(r => {
-        const li = document.createElement("li");
-        li.textContent = r;
-        listaR.appendChild(li);
-    });
+    mostrarReservasHora();
 }
 
-// VISTA TRABAJADOR
 function cargarVistaTrabajador() {
+
     const usuario = localStorage.getItem("usuario");
-    const turno = reservas[trabajadores.indexOf(usuario)] || "Sin turno";
+    let turno = "Sin turno asignado";
 
-    document.getElementById("proximoTurno").textContent =
-        "Tu próximo turno es: " + turno;
+    for (const hora of horas) {
+        if (reservasPorHora[hora].includes(usuario)) {
+            turno = hora;
+            break;
+        }
+    }
 
-    const listaR = document.getElementById("listaReservas");
+    const turnoElemento = document.getElementById("proximoTurno");
 
-    reservas.forEach(r => {
-        const li = document.createElement("li");
-        li.textContent = r;
-        listaR.appendChild(li);
+    // 🔥 evita error si el elemento no existe
+    if (turnoElemento) {
+        turnoElemento.textContent = "Tu próximo turno es: " + turno;
+    }
+
+    mostrarReservasHora();
+}
+
+// ===================
+// MOSTRAR RESERVAS
+// ===================
+
+function mostrarReservasHora() {
+
+    const lista = document.getElementById("listaReservas");
+    const horaTexto = document.getElementById("horaActual");
+
+    // 🔥 evita errores si la página no tiene estos elementos
+    if (!lista || !horaTexto) return;
+
+    const hora = horas[indiceHoraActual];
+    const reservas = reservasPorHora[hora];
+
+    horaTexto.textContent = "Hora: " + hora;
+
+    lista.innerHTML = "";
+
+    reservas.forEach((socio, index) => {
+
+        const campo = document.createElement("div");
+        campo.classList.add("campoReserva");
+
+        if (socio) {
+            campo.classList.add("ocupado");
+            campo.textContent = Campo ${index + 1} - ${socio};
+        } else {
+            campo.classList.add("disponible");
+            campo.textContent = Campo ${index + 1} - Disponible;
+        }
+
+        lista.appendChild(campo);
     });
 }
 
+// ===================
+// NAVEGACIÓN HORAS
+// ===================
+
+function horaAnterior() {
+    if (indiceHoraActual > 0) {
+        indiceHoraActual--;
+        mostrarReservasHora();
+    }
+}
+
+function horaSiguiente() {
+    if (indiceHoraActual < horas.length - 1) {
+        indiceHoraActual++;
+        mostrarReservasHora();
+    }
+}
+
+// ===================
 // CERRAR SESIÓN
+// ===================
+
 function cerrarSesion() {
     localStorage.clear();
     window.location.href = "index.html";

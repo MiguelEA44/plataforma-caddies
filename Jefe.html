@@ -2,26 +2,24 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Panel del Jefe</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <title>Vista Jefe</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body onload="verificarRol('jefe')">
 
-<h1>Panel del Jefe</h1>
+<h2>Vista Jefe</h2>
 
-<section>
-    <h2>Lista de Trabajadores</h2>
-    <ul id="listaTrabajadores"></ul>
-</section>
+<div class="navegacionHoras">
+    <button onclick="horaAnterior()">⬅</button>
+    <span id="horaActual"></span>
+    <button onclick="horaSiguiente()">➡</button>
+</div>
 
-<section>
-    <h2>Reservas</h2>
-    <ul id="listaReservas"></ul>
-</section>
+<div id="listaReservas" class="gridReservas"></div>
 
+<br>
 <button onclick="cerrarSesion()">Cerrar sesión</button>
 
+<script src="script.js"></script>
 </body>
 </html>

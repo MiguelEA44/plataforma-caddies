@@ -2,23 +2,26 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Panel del Trabajador</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <title>Vista Trabajador</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body onload="verificarRol('trabajador')">
 
-<h1>Panel del Trabajador</h1>
+<h2>Vista Trabajador</h2>
 
 <p id="proximoTurno"></p>
 
-<section>
-    <h2>Reservas del Día</h2>
-    <ul id="listaReservas"></ul>
-</section>
+<div class="navegacionHoras">
+    <button onclick="horaAnterior()">⬅</button>
+    <span id="horaActual"></span>
+    <button onclick="horaSiguiente()">➡</button>
+</div>
 
+<div id="listaReservas" class="gridReservas"></div>
+
+<br>
 <button onclick="cerrarSesion()">Cerrar sesión</button>
 
+<script src="script.js"></script>
 </body>
 </html>

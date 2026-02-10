@@ -1,32 +1,34 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Inicio de Sesión</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<h1>Plataforma de Turnos - Club Campestre</h1>
+<h2>Login</h2>
 
 <form onsubmit="login(event)">
+    <input type="text" id="usuario" placeholder="Usuario">
+    <br><br>
 
-    <label>Usuario</label>
-    <input type="text" id="usuario" required>
 
-    <label>Rol</label>
-    <select id="rol">
-        <option value="jefe">Jefe</option>
-        <option value="trabajador">Trabajador</option>
-    </select>
+<select id="rol">
+    <option value="trabajador">Trabajador</option>
+    <option value="jefe">Jefe</option>
+</select>
+<br><br>
 
-    <button type="submit">Ingresar</button>
+<button type="submit">Entrar</button>
+
 
 </form>
 
 <p id="mensaje"></p>
+
+<script src="script.js"></script>
 
 </body>
 </html>
