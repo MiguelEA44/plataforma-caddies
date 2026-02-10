@@ -1,4 +1,3 @@
-// Datos simulados (según el documento)
 const trabajadores = ["Juan", "Carlos", "Pedro", "Luis"];
 const reservas = ["08:00", "09:00", "10:00", "11:00"];
 
@@ -58,12 +57,13 @@ function cargarVistaJefe() {
 // VISTA TRABAJADOR
 function cargarVistaTrabajador() {
     const usuario = localStorage.getItem("usuario");
-    const turno = reservas[trabajadores.indexOf(usuario)] || "Sin turno asignado";
+    const turno = reservas[trabajadores.indexOf(usuario)] || "Sin turno";
 
     document.getElementById("proximoTurno").textContent =
         "Tu próximo turno es: " + turno;
 
     const listaR = document.getElementById("listaReservas");
+
     reservas.forEach(r => {
         const li = document.createElement("li");
         li.textContent = r;

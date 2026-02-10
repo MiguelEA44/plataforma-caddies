@@ -3,23 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Inicio de Sesión</title>
+    <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
+
 <body>
 
 <h1>Plataforma de Turnos - Club Campestre</h1>
 
 <form onsubmit="login(event)">
-    <label>Usuario:</label>
+
+    <label>Usuario</label>
     <input type="text" id="usuario" required>
 
-    <label>Rol:</label>
+    <label>Rol</label>
     <select id="rol">
         <option value="jefe">Jefe</option>
         <option value="trabajador">Trabajador</option>
     </select>
 
     <button type="submit">Ingresar</button>
+
 </form>
 
 <p id="mensaje"></p>
