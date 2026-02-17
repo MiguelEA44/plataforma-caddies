@@ -3,7 +3,7 @@ ESTILOS GENERALES
 ========================= */
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg, #1f3c88, #163172);
+    background: linear-gradient(135deg, #70be1d, #163172);
     margin: 0;
     height: 100vh;
     display: flex;
