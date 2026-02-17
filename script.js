@@ -25,8 +25,8 @@ function login(event) {
     const usuario = document.getElementById("usuario").value;
     const rol = document.getElementById("rol").value;
 
-    if (!usuario) {
-        document.getElementById("mensaje").textContent = "Usuario inválido";
+    if (!usuario || !rol) {
+        document.getElementById("mensaje").textContent = "Debe completar todos los campos";
         return;
     }
 
@@ -79,7 +79,6 @@ function cargarVistaTrabajador() {
 
     const turnoElemento = document.getElementById("proximoTurno");
 
-    // 🔥 evita error si el elemento no existe
     if (turnoElemento) {
         turnoElemento.textContent = "Tu próximo turno es: " + turno;
     }
@@ -96,7 +95,6 @@ function mostrarReservasHora() {
     const lista = document.getElementById("listaReservas");
     const horaTexto = document.getElementById("horaActual");
 
-    // 🔥 evita errores si la página no tiene estos elementos
     if (!lista || !horaTexto) return;
 
     const hora = horas[indiceHoraActual];
@@ -113,10 +111,10 @@ function mostrarReservasHora() {
 
         if (socio) {
             campo.classList.add("ocupado");
-            campo.textContent = Campo ${index + 1} - ${socio};
+            campo.textContent = `Campo ${index + 1} - ${socio}`;
         } else {
             campo.classList.add("disponible");
-            campo.textContent = Campo ${index + 1} - Disponible;
+            campo.textContent = `Campo ${index + 1} - Disponible`;
         }
 
         lista.appendChild(campo);

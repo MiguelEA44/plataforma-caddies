@@ -7,14 +7,19 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 </head>
+
 <body>
 
-<h2>Login</h2>
-
 <form onsubmit="login(event)">
-    
-    <input type="text" id="usuario" placeholder="Usuario" required>
-    <br><br>
+
+    <h2>Login</h2>
+
+    <input 
+        type="text" 
+        id="usuario" 
+        placeholder="Usuario" 
+        required
+    >
 
     <select id="rol" required>
         <option value="" disabled selected>Selecciona un rol</option>
@@ -22,13 +27,11 @@
         <option value="jefe">Jefe</option>
     </select>
 
-    <br><br>
-
     <button type="submit">Entrar</button>
 
-</form>
+    <p id="mensaje"></p>
 
-<p id="mensaje"></p>
+</form>
 
 </body>
 </html>
