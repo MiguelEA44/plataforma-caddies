@@ -99,19 +99,16 @@ Requerimientos del Sistema de Gestión de Turnos y Pagos
 
 ---
 
-📈 Diagramas del Sistema
+## 📈 Diagramas del Sistema
 
-### 🔹 Diagrama de Flujo
+### 📌 Diagrama de Flujo
+![Diagrama de Flujo](imagenes/diagrama_flujo.png)
 
-![Diagrama de Flujo](imagenes/flujo.png)
+### 📌 Diagrama de Casos de Uso
+![Casos de Uso](imagenes/diagrama_casos_uso.png)
 
-### 🔹 Diagrama de Asignación de Canchas
-
-![Asignación de Canchas](imagenes/canchas.png)
-
-### 🔹 Diagrama de Casos de Uso
-
-![Casos de Uso](imagenes/Diagrama de Casos de uso.png)
+### 📌 Diagrama de Clases
+![Diagrama de Clases](imagenes/diagrama_clases.png)
 
 ---
 
@@ -159,6 +156,9 @@ La implementación de este sistema permitirá optimizar la asignación del perso
 ✍️ Autores
 
 Hayder Duván Carreño Ramos
+
 Juan Esteban Bustos Rojas
+
 Miguel Eduardo Angulo Cantor
+
 Juan Felipe Rojas Caceres
