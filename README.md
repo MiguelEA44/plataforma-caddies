@@ -127,15 +127,24 @@ Requerimientos del Sistema de Gestión de Turnos y Pagos
 
 /gestion-turnos
 │
+
 ├── /imagenes
+
 │ ├── flujo.png
+
 │ ├── casos_uso.png
+
 │ └── canchas.png
+
 │
 ├── index.html
+
 ├── styles.css
+
 ├── script.js
+
 └── README.md
+
 
 
 ---
