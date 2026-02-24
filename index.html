@@ -3,34 +3,475 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <title>Club de Tenis Colombia - Sistema de Gestión</title>
+    <link rel="stylesheet" href="gestion-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-<form onsubmit="login(event)">
+<!-- ===== PANTALLA DE LOGIN ===== -->
+<div id="login-screen" class="screen active">
+    <div class="login-bg-overlay"></div>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-logo">
+                    <i class="fas fa-tennis-ball"></i>
+                </div>
+                <h1>Club de Tenis</h1>
+                <p>Sistema de Gestión · Colombia 🇨🇴</p>
+            </div>
 
-    <h2>Login</h2>
+            <form id="login-form" class="auth-form active">
+                <div class="form-group">
+                    <label for="username">Usuario</label>
+                    <input type="text" id="username" placeholder="Tu usuario" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                </button>
+                <div class="login-loading" id="login-loading">
+                    <div class="spinner-small"></div>
+                    <span>Iniciando sesión...</span>
+                </div>
+            </form>
 
-    <input 
-        type="text" 
-        id="usuario" 
-        placeholder="Usuario" 
-        required
-    >
+            <form id="register-form" class="auth-form">
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" id="reg-nombre" placeholder="Ej: Andrés Felipe Gómez" required>
+                </div>
+                <div class="form-group">
+                    <label>Usuario</label>
+                    <input type="text" id="reg-username" placeholder="Ej: andres.gomez" required>
+                </div>
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <input type="password" id="reg-password" placeholder="Mínimo 6 caracteres" required>
+                </div>
+                <div class="form-group">
+                    <label>Confirmar Contraseña</label>
+                    <input type="password" id="reg-password-confirm" placeholder="Repite la contraseña" required>
+                </div>
+                <div class="form-group">
+                    <label>Tipo de Cuenta</label>
+                    <select id="reg-role" required>
+                        <option value="empleado">Empleado</option>
+                        <option value="admin">Administrador</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-user-plus"></i> Registrarse
+                </button>
+            </form>
 
-    <select id="rol" required>
-        <option value="" disabled selected>Selecciona un rol</option>
-        <option value="trabajador">Trabajador</option>
-        <option value="jefe">Jefe</option>
-    </select>
+            <div class="login-footer">
+                <p id="toggle-auth-text">¿No tienes cuenta?
+                    <a href="#" id="toggle-auth-link">Regístrate aquí</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <button type="submit">Entrar</button>
+<!-- ===== DASHBOARD ===== -->
+<div id="dashboard-screen" class="screen">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <i class="fas fa-tennis-ball"></i>
+            <span>Club de Tenis Colombia</span>
+        </div>
+        <div class="navbar-user">
+            <img id="nav-avatar" src="" alt="avatar" class="nav-avatar" onerror="this.style.display='none'">
+            <span id="user-name"></span>
+            <span id="user-role" class="badge"></span>
+            <button class="btn btn-secondary btn-sm" id="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Salir
+            </button>
+        </div>
+    </nav>
 
-    <p id="mensaje"></p>
+    <div class="main-content">
+        <aside class="sidebar">
+            <ul class="menu" id="main-menu">
+                <li class="menu-item active" data-view="dashboard">
+                    <i class="fas fa-chart-line"></i><span>Dashboard</span>
+                </li>
+                <li class="menu-item" data-view="canchas">
+                    <i class="fas fa-tennis-ball"></i><span>Canchas</span>
+                </li>
+                <li class="menu-item admin-only" data-view="empleados">
+                    <i class="fas fa-users"></i><span>Empleados</span>
+                </li>
+                <li class="menu-item admin-only" data-view="clientes">
+                    <i class="fas fa-user-friends"></i><span>Clientes</span>
+                </li>
+                <li class="menu-item" data-view="turnos">
+                    <i class="fas fa-clock"></i><span>Turnos</span>
+                </li>
+                <li class="menu-item" data-view="pagos">
+                    <i class="fas fa-dollar-sign"></i><span>Pagos</span>
+                </li>
+                <li class="menu-item admin-only" data-view="reportes">
+                    <i class="fas fa-file-alt"></i><span>Reportes</span>
+                </li>
+                <li class="menu-item" data-view="perfil">
+                    <i class="fas fa-user-circle"></i><span>Mi Perfil</span>
+                </li>
+                <li class="menu-item" data-view="soporte">
+                    <i class="fas fa-headset"></i><span>Soporte</span>
+                </li>
+            </ul>
+        </aside>
 
-</form>
+        <main class="content">
 
+            <!-- DASHBOARD -->
+            <div id="view-dashboard" class="view active">
+                <div class="view-header">
+                    <div><h2>Dashboard</h2><p>Resumen general del sistema</p></div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card green">
+                        <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="stat-info"><h3 id="stat-disponibles">0</h3><p>Canchas Disponibles</p></div>
+                    </div>
+                    <div class="stat-card red">
+                        <div class="stat-icon"><i class="fas fa-times-circle"></i></div>
+                        <div class="stat-info"><h3 id="stat-ocupadas">0</h3><p>Canchas Ocupadas</p></div>
+                    </div>
+                    <div class="stat-card yellow">
+                        <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+                        <div class="stat-info"><h3 id="stat-reservadas">0</h3><p>Canchas Reservadas</p></div>
+                    </div>
+                    <div class="stat-card blue">
+                        <div class="stat-icon"><i class="fas fa-users"></i></div>
+                        <div class="stat-info"><h3 id="stat-empleados">0</h3><p>Empleados Activos</p></div>
+                    </div>
+                </div>
+                <div class="dashboard-section">
+                    <h3>Estado de Canchas en Tiempo Real</h3>
+                    <div id="canchas-grid" class="canchas-grid"></div>
+                </div>
+            </div>
+
+            <!-- CANCHAS -->
+            <div id="view-canchas" class="view">
+                <div class="view-header">
+                    <div><h2>Gestión de Canchas</h2></div>
+                    <button class="btn btn-primary admin-only" id="btn-nueva-cancha">
+                        <i class="fas fa-plus"></i> Nueva Cancha
+                    </button>
+                </div>
+                <div class="canchas-list" id="canchas-list"></div>
+            </div>
+
+            <!-- EMPLEADOS -->
+            <div id="view-empleados" class="view">
+                <div class="view-header">
+                    <div><h2>Gestión de Empleados</h2></div>
+                    <button class="btn btn-primary" id="btn-nuevo-empleado">
+                        <i class="fas fa-plus"></i> Nuevo Empleado
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead><tr>
+                            <th>ID</th><th>Nombre</th><th>Usuario</th>
+                            <th>Cancha</th><th>Estado</th><th>Acciones</th>
+                        </tr></thead>
+                        <tbody id="empleados-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- CLIENTES -->
+            <div id="view-clientes" class="view">
+                <div class="view-header">
+                    <div><h2>Gestión de Clientes</h2></div>
+                    <button class="btn btn-primary" id="btn-nuevo-cliente">
+                        <i class="fas fa-plus"></i> Nuevo Cliente
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead><tr>
+                            <th>ID</th><th>Nombre</th><th>Email</th>
+                            <th>Teléfono</th><th>Ciudad</th><th>Reservas</th><th>Acciones</th>
+                        </tr></thead>
+                        <tbody id="clientes-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TURNOS -->
+            <div id="view-turnos" class="view">
+                <div class="view-header">
+                    <div><h2>Gestión de Turnos</h2></div>
+                    <button class="btn btn-primary empleado-action" id="btn-registrar-turno">
+                        <i class="fas fa-clock"></i> Registrar Turno
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead><tr>
+                            <th>ID</th><th>Empleado</th><th>Cancha</th>
+                            <th>Inicio</th><th>Fin</th><th>Horas</th><th>Estado</th><th>Acciones</th>
+                        </tr></thead>
+                        <tbody id="turnos-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- PAGOS -->
+            <div id="view-pagos" class="view">
+                <div class="view-header">
+                    <div><h2>Gestión de Pagos</h2></div>
+                    <button class="btn btn-success admin-only" id="btn-procesar-pagos">
+                        <i class="fas fa-money-bill-wave"></i> Procesar Pagos Pendientes
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead><tr>
+                            <th>ID</th><th>Empleado</th><th>Horas</th>
+                            <th>Tarifa/Hora</th><th>Total</th><th>Estado</th><th>Fecha</th>
+                        </tr></thead>
+                        <tbody id="pagos-tbody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- REPORTES -->
+            <div id="view-reportes" class="view">
+                <div class="view-header">
+                    <div><h2>Reportes</h2></div>
+                    <button class="btn btn-secondary" id="btn-exportar-reporte">
+                        <i class="fas fa-download"></i> Exportar
+                    </button>
+                </div>
+                <div class="filters-section">
+                    <div class="filter-group">
+                        <label>Fecha Inicio</label>
+                        <input type="date" id="filter-fecha-inicio">
+                    </div>
+                    <div class="filter-group">
+                        <label>Fecha Fin</label>
+                        <input type="date" id="filter-fecha-fin">
+                    </div>
+                    <div class="filter-group">
+                        <label>Tipo</label>
+                        <select id="filter-tipo-reporte">
+                            <option value="todos">Todos</option>
+                            <option value="turnos">Turnos</option>
+                            <option value="pagos">Pagos</option>
+                            <option value="canchas">Uso de Canchas</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" id="btn-filtrar-reporte">
+                        <i class="fas fa-filter"></i> Filtrar
+                    </button>
+                </div>
+                <div id="reporte-resultado" class="reporte-resultado"></div>
+            </div>
+
+            <!-- PERFIL -->
+            <div id="view-perfil" class="view">
+                <div class="view-header"><div><h2>Mi Perfil</h2></div></div>
+                <div class="profile-container">
+                    <div class="profile-card">
+                        <div class="profile-avatar">
+                            <img id="profile-avatar-img" src="" alt="avatar" style="width:100%;height:100%;border-radius:50%;object-fit:cover">
+                        </div>
+                        <div class="profile-info">
+                            <h3 id="profile-nombre">Cargando...</h3>
+                            <p class="profile-role" id="profile-role">Rol</p>
+                        </div>
+                    </div>
+                    <div class="profile-sections">
+                        <div class="profile-section">
+                            <h3><i class="fas fa-info-circle"></i> Información Personal</h3>
+                            <form id="form-perfil-info">
+                                <div class="form-group">
+                                    <label>Nombre Completo</label>
+                                    <input type="text" id="perfil-nombre" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Usuario</label>
+                                    <input type="text" id="perfil-username" disabled>
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Guardar Cambios
+                                </button>
+                            </form>
+                        </div>
+                        <div class="profile-section">
+                            <h3><i class="fas fa-lock"></i> Cambiar Contraseña</h3>
+                            <form id="form-cambiar-password">
+                                <div class="form-group">
+                                    <label>Contraseña Actual</label>
+                                    <input type="password" id="password-actual" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Nueva Contraseña</label>
+                                    <input type="password" id="password-nueva" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Confirmar Nueva Contraseña</label>
+                                    <input type="password" id="password-confirmar" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-key"></i> Cambiar Contraseña
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SOPORTE -->
+            <div id="view-soporte" class="view">
+                <div class="view-header"><div><h2>Soporte y Ayuda</h2></div></div>
+                <div class="soporte-container">
+                    <div class="soporte-hero">
+                        <i class="fas fa-headset"></i>
+                        <h3>¿Necesitas ayuda?</h3>
+                        <p>Nuestro equipo en Colombia está listo para asistirte 🇨🇴</p>
+                    </div>
+
+                    <div class="soporte-sections">
+                        <!-- FAQ -->
+                        <div class="soporte-section">
+                            <h3><i class="fas fa-question-circle"></i> Preguntas Frecuentes</h3>
+                            <div class="faq-list">
+                                <div class="faq-item">
+                                    <div class="faq-question"><i class="fas fa-chevron-right"></i><span>¿Cómo inicio sesión por primera vez?</span></div>
+                                    <div class="faq-answer">Si no tienes cuenta, haz clic en "Regístrate aquí". Completa el formulario con tu nombre, usuario y contraseña y selecciona tu tipo de cuenta (Empleado o Administrador).</div>
+                                </div>
+                                <div class="faq-item">
+                                    <div class="faq-question"><i class="fas fa-chevron-right"></i><span>¿Cómo cambio mi contraseña?</span></div>
+                                    <div class="faq-answer">Ve a "Mi Perfil" en el menú lateral, sección "Cambiar Contraseña". Ingresa tu contraseña actual y la nueva contraseña dos veces.</div>
+                                </div>
+                                <div class="faq-item">
+                                    <div class="faq-question"><i class="fas fa-chevron-right"></i><span>¿Cómo registro un turno?</span></div>
+                                    <div class="faq-answer">Ve a "Turnos" y haz clic en "Registrar Turno". Al finalizar tu turno, presiona "Finalizar" para que quede pendiente de aprobación del administrador.</div>
+                                </div>
+                                <div class="faq-item">
+                                    <div class="faq-question"><i class="fas fa-chevron-right"></i><span>¿Qué significan los colores de las canchas?</span></div>
+                                    <div class="faq-answer">🟢 Verde = Disponible &nbsp;|&nbsp; 🔴 Rojo = Ocupada &nbsp;|&nbsp; 🟡 Amarillo = Reservada. Los estados se actualizan en tiempo real.</div>
+                                </div>
+                                <div class="faq-item">
+                                    <div class="faq-question"><i class="fas fa-chevron-right"></i><span>¿Cómo se calculan los pagos?</span></div>
+                                    <div class="faq-answer">Los pagos se calculan así: Horas trabajadas × $18.000 COP/hora. El administrador debe aprobar los turnos antes de procesarlos.</div>
+                                </div>
+                                <div class="faq-item">
+                                    <div class="faq-question"><i class="fas fa-chevron-right"></i><span>¿En qué ciudades de Colombia operamos?</span></div>
+                                    <div class="faq-answer">Actualmente tenemos sedes en Bogotá, Medellín, Cali, Barranquilla y Cartagena. Próximamente en más ciudades del país.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Guías -->
+                        <div class="soporte-section">
+                            <h3><i class="fas fa-book"></i> Guías Rápidas</h3>
+                            <div class="guias-grid">
+                                <div class="guia-card">
+                                    <i class="fas fa-user-shield"></i>
+                                    <h4>Guía del Administrador</h4>
+                                    <p>Gestiona canchas, empleados, clientes y aprueba turnos</p>
+                                </div>
+                                <div class="guia-card">
+                                    <i class="fas fa-user-tie"></i>
+                                    <h4>Guía del Empleado</h4>
+                                    <p>Registra y finaliza turnos, consulta tus pagos</p>
+                                </div>
+                                <div class="guia-card">
+                                    <i class="fas fa-tennis-ball"></i>
+                                    <h4>Gestión de Canchas</h4>
+                                    <p>Cambia estados, asigna empleados y administra reservas</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contacto Colombia -->
+                        <div class="soporte-section">
+                            <h3><i class="fas fa-phone"></i> Contacto en Colombia</h3>
+                            <div class="contacto-info">
+                                <div class="contacto-item">
+                                    <i class="fas fa-envelope"></i>
+                                    <div>
+                                        <strong>Correos de Soporte</strong>
+                                        <p>soporte@clubteniscolombia.com.co</p>
+                                        <p>ayuda@clubteniscolombia.com.co</p>
+                                        <p>admin@clubteniscolombia.com.co</p>
+                                    </div>
+                                </div>
+                                <div class="contacto-item">
+                                    <i class="fas fa-phone-alt"></i>
+                                    <div>
+                                        <strong>Líneas de Atención</strong>
+                                        <p>📞 Bogotá: (601) 234 5678</p>
+                                        <p>📞 Medellín: (604) 987 6543</p>
+                                        <p>📞 Cali: (602) 456 7890</p>
+                                        <p>📱 WhatsApp: +57 310 456 7890</p>
+                                        <p>📱 WhatsApp: +57 315 987 6543</p>
+                                    </div>
+                                </div>
+                                <div class="contacto-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <div>
+                                        <strong>Sede Principal</strong>
+                                        <p>Cra. 15 # 88 - 64, Bogotá D.C., Colombia</p>
+                                        <p>Sede Norte: Cll. 127 # 13 - 40, Bogotá</p>
+                                    </div>
+                                </div>
+                                <div class="contacto-item">
+                                    <i class="fas fa-clock"></i>
+                                    <div>
+                                        <strong>Horario de Atención (Hora Colombia COT)</strong>
+                                        <p>Lunes a Viernes: 7:00 AM – 8:00 PM</p>
+                                        <p>Sábados: 8:00 AM – 5:00 PM</p>
+                                        <p>Domingos: 9:00 AM – 2:00 PM</p>
+                                    </div>
+                                </div>
+                                <div class="contacto-item">
+                                    <i class="fas fa-comments"></i>
+                                    <div>
+                                        <strong>Redes Sociales</strong>
+                                        <p>Instagram: @clubteniscolombia</p>
+                                        <p>Facebook: Club Tenis Colombia Oficial</p>
+                                        <p>Twitter/X: @ClubtenisCOL</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="modal-title">Modal</h3>
+            <button class="modal-close" id="modal-close"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body" id="modal-body"></div>
+    </div>
+</div>
+
+<div id="notifications-container"></div>
+<script src="gestion-script.js"></script>
 </body>
 </html>
