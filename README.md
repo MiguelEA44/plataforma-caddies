@@ -116,7 +116,7 @@ Requerimientos del Sistema de Gestión de Turnos y Pagos
 🛠️ Tecnologías Utilizadas
 
 - HTML5  
-- CSS3  
+- CSS 
 - JavaScript  
 - GitHub  
 - Visual Studio Code  
