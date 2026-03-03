@@ -73,27 +73,141 @@ Requerimientos del Sistema de Gestión de Turnos y Pagos
 
 ---
 
-📊 Tabla de Requerimientos
 
-| Actor         | Requerimiento Funcional                                              | Requerimiento No Funcional                                  |
-|---------------|----------------------------------------------------------------------|--------------------------------------------------------------|
-| Empleado      | Registrar inicio y fin de turno                                      | Tiempo de respuesta menor a 3 segundos                       |
-| Empleado      | Consultar horas trabajadas                                           | Interfaz clara e intuitiva                                   |
-| Empleado      | Consultar pagos                                                      | Compatible con dispositivos móviles                          |
-| Empleado      | Ver asignación de cancha                                             | Actualización en tiempo real                                 |
-| Empleado      | Visualizar lista de turnos                                           | Información siempre sincronizada                             |
-| Administrador | Registrar empleados                                                  | Acceso mediante autenticación segura                         |
-| Administrador | Visualizar estado de las canchas                                     | Refresco automático de información                           |
-| Administrador | Asignar empleados a canchas                                          | Cambios reflejados inmediatamente                             |
-| Administrador | Aprobar turnos                                                       | Permisos por rol                                              |
-| Administrador | Registrar clientes                                                   | Protección de datos                                           |
-| Administrador | Generar reportes                                                     | Reportes sin errores                                          |
-| Administrador | Configurar horarios                                                  | Disponibilidad 24/7                                           |
-| Administrador | Autorizar pagos                                                      | Información cifrada                                           |
-| Sistema       | Calcular pagos automáticamente                                      | Precisión del 99.9%                                           |
-| Sistema       | Actualizar lista de asignación                                       | Sincronización en tiempo real                                 |
-| Sistema       | Enviar notificaciones                                                | Entrega inmediata                                             |
-| Sistema       | Almacenar información                                                | Respaldo automático diario                                    |
+# ⚙️ Requerimientos Funcionales
+
+## 👤 Gestión de Usuarios
+- Registro de usuarios (Administrador y Empleados)
+- Inicio y cierre de sesión
+- Validación de credenciales
+- CRUD de empleados (solo administrador)
+- Control de roles y permisos
+
+---
+
+## 🧑‍💼 Gestión de Clientes
+- Registrar clientes
+- Editar información
+- Consultar listado
+- Eliminar clientes (solo administrador)
+
+---
+
+## 🏟️ Gestión de Canchas
+- Registro de canchas
+- Estado en tiempo real:
+  - Disponible
+  - Ocupada
+- Cambio automático según turnos
+- Liberación de cancha
+
+---
+
+## ⏰ Gestión de Turnos
+- Crear turnos con:
+  - Cliente
+  - Cancha
+  - Caddie
+  - Hora inicio / fin
+- Editar turnos
+- Cancelar turnos
+- Ver turnos activos/finalizados
+- Evitar doble reserva
+
+---
+
+## 🧢 Asignación de Empleados
+- Asignación según disponibilidad
+- Visualización por cancha
+- Registro automático de horas
+- Evitar solapamiento de turnos
+
+---
+
+## 💰 Gestión de Pagos
+- Cálculo automático
+- Registro de pagos
+- Comprobantes
+- Historial por empleado
+
+---
+
+## 📊 Reportes
+- Turnos (diarios, semanales, mensuales)
+- Ingresos
+- Horas trabajadas
+- Exportación futura (PDF/Excel)
+
+---
+
+## 📡 Tiempo Real
+- Actualización automática
+- Panel administrativo dinámico
+
+---
+
+# 🔒 Requerimientos No Funcionales
+
+## 🛡️ Seguridad
+- Autenticación segura
+- Contraseñas cifradas
+- Control de acceso por roles
+- Validación de datos
+- Protección contra accesos no autorizados
+
+---
+
+## 🎨 Usabilidad
+- Interfaz intuitiva
+- Diseño claro
+- Compatible con:
+  - Chrome
+  - Edge
+  - Firefox
+
+---
+
+## ⚡ Rendimiento
+- Respuesta < 3 segundos
+- Soporte multiusuario
+- Actualización en tiempo real
+
+---
+
+## 🌐 Disponibilidad
+- 24/7
+- Persistencia de datos
+- Backups automáticos (Firebase)
+
+---
+
+## 📈 Escalabilidad
+- Arquitectura flexible
+- Preparado para nuevas funciones
+- Soporte a crecimiento
+
+---
+
+## 🛠️ Mantenibilidad
+- Patrón MVC
+- Separación frontend/backend
+- Uso de GitHub
+- Documentación clara
+
+---
+
+## 📱 Portabilidad
+- Responsive
+- Multidispositivo
+
+---
+
+## 🧩 Integridad de Datos
+- Sin duplicación de turnos
+- Validación de horarios
+- Consistencia entre módulos
+
+---
 
 
 
