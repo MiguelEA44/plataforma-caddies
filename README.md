@@ -145,125 +145,314 @@ Requerimientos del Sistema de Gestión de Turnos y Pagos
 
 └── README.md
 
-IMPLEMENTACIÓN DE LA ARQUITECTURA QUE SE USARÁ
+#  Sistema de Gestión de Turnos y Pagos – Club de Tenis
 
+## 📖 Descripción del Proyecto
 
- Arquitectura del Sistema
-Tipo de Arquitectura Implementada
-Para el desarrollo del Sistema de Gestión de Turnos y Pagos del Club de Tenis, se implementará una arquitectura Cliente-Servidor de Tres Capas, utilizando el patrón de diseño MVC (Modelo – Vista – Controlador).
-Esta arquitectura permite separar responsabilidades, mejorar la organización del código y facilitar el mantenimiento, escalabilidad y trabajo en equipo.
+Este proyecto corresponde a un sistema web para la gestión de canchas, empleados, turnos y pagos en un club de tenis, permitiendo una administración eficiente, segura y organizada de los recursos.
 
+El sistema está desarrollado utilizando tecnologías web modernas y una arquitectura profesional orientada a la escalabilidad y el trabajo en equipo.
 
-Para el desarrollo del Sistema de Gestión de Turnos y Pagos del Club de Tenis, se adopta una Arquitectura Cliente-Servidor en Tres Capas, debido a las necesidades funcionales, de escalabilidad y de trabajo colaborativo que presenta el proyecto.
-Esta arquitectura es la más adecuada porque permite separar claramente la interfaz de usuario, la lógica del negocio y la gestión de datos, garantizando organización, mantenimiento y crecimiento futuro del sistema.
+---
 
-  Arquitectura en Tres Capas
-El sistema estará dividido en las siguientes capas:
-FRONTEND Y BACKEND.
+#  Implementación de la Arquitectura
 
-Capa de Presentación (Frontend)
-Corresponde a la interfaz gráfica con la que interactuaran los usuarios (Administrador y Empleado).
-El club necesita visualizar en tiempo real el estado de las canchas y los turnos. Separar la interfaz del procesamiento interno permite mejorar la experiencia del usuario sin afectar la lógica del sistema.
+## Arquitectura del Sistema
 
-Además, al trabajar en equipo mediante GitHub, separar el frontend permite que algunos integrantes trabajen en diseño e interfaz mientras otros trabajan en la lógica interna.
+Para el desarrollo del Sistema de Gestión de Turnos y Pagos del Club de Tenis, se implementa una **Arquitectura Cliente-Servidor en Tres Capas**, utilizando el patrón de diseño **MVC (Modelo – Vista – Controlador)**.
 
-Está desarrollada con:
-HTML5
-CSS
-JavaScript
+Esta arquitectura permite separar responsabilidades, mejorar la organización del código y facilitar el mantenimiento, escalabilidad y desarrollo colaborativo.
 
+Se adopta esta arquitectura debido a las necesidades funcionales, de crecimiento y trabajo en equipo del proyecto, garantizando una estructura clara entre interfaz, lógica y datos.
 
-Funciones principales:
-Formularios de inicio de sesión y registro.
-Visualización en tiempo real del estado de las canchas.
-Panel administrativo.
-Registro de turnos.
-Visualización de pagos.
-Generación de reportes.
+---
 
+## Arquitectura en Tres Capas
 
-Esta capa se ejecuta en el navegador del cliente y se comunica con el servidor mediante peticiones HTTP.
+El sistema está dividido en las siguientes capas:
 
+###  Capa de Presentación (Frontend)
 
- Capa de Lógica de Negocio (Backend)
- 
+Corresponde a la interfaz gráfica con la que interactúan los usuarios (Administrador y Empleados).
+
+Esta capa permite visualizar en tiempo real el estado de las canchas y turnos, mejorando la experiencia del usuario sin afectar la lógica interna del sistema.
+
+Además, facilita el trabajo en equipo mediante GitHub, permitiendo que algunos integrantes trabajen en diseño mientras otros desarrollan la lógica.
+
+**Tecnologías:**
+
+* HTML5
+* CSS
+* JavaScript
+
+**Funciones principales:**
+
+* Formularios de inicio de sesión y registro
+* Visualización del estado de las canchas
+* Panel administrativo
+* Registro de turnos
+* Visualización de pagos
+* Generación de reportes
+
+Esta capa se ejecuta en el navegador y se comunica con el servidor mediante peticiones HTTP.
+
+---
+
+###  Capa de Lógica de Negocio (Backend)
+
 Se encarga de procesar la información enviada desde el frontend y aplicar las reglas del sistema.
-Tecnologías utilizadas:
-Node.js
-Express.js
 
-Funciones principales:
-Autenticación y validación de usuarios.
-Registro y actualización de empleados y clientes.
-Asignación de canchas.
-Control de turnos.
-Cálculo automático de pagos.
-Generación de reportes administrativos.
-Validación de datos antes de almacenarlos.
+**Tecnologías:**
 
-El backend actúa como intermediario entre el frontend y la base de datos, garantizando seguridad y organización en el manejo de la información.
-Capa de Datos (Base de Datos)
+* Node.js
+* Express.js
 
-Se utilizará una base de datos para almacenar la información de forma persistente.
-Base de datos propuesta:
-FireBase
+**Funciones principales:**
 
-Datos almacenados:
-Usuarios (Administrador y Empleados).
-Clientes.
-Canchas.
-Turnos.
-Pagos.
-Reportes históricos.
+* Autenticación de usuarios
+* Registro y actualización de empleados y clientes
+* Asignación de canchas
+* Control de turnos
+* Cálculo automático de pagos
+* Generación de reportes
+* Validación de datos
 
-Esta capa permite que la información esté disponible desde cualquier dispositivo y no dependa del almacenamiento local del navegador.
-Patrón de Diseño: MVC (Modelo – Vista – Controlador)
-El sistema implementará el patrón MVC para organizar mejor el código:
-Modelo (Model): Representa la estructura de los datos (usuarios, canchas, turnos, pagos).
+El backend actúa como intermediario entre el frontend y la base de datos, garantizando seguridad y organización.
 
+---
 
-Vista (View): Corresponde a la interfaz gráfica desarrollada en HTML, CSS y JavaScript.
+###  Capa de Datos (Base de Datos)
 
+Permite almacenar la información de forma persistente.
 
-Controlador (Controller): Gestiona las peticiones del usuario, procesa la lógica del negocio y comunica la vista con el modelo.
+**Base de datos propuesta:**
 
+* Firebase
 
-Este patrón permite:
-Separar responsabilidades.
-Facilitar el mantenimiento.
-Mejorar la escalabilidad.
-Optimizar el trabajo en equipo.
+**Datos almacenados:**
 
+* Usuarios
+* Clientes
+* Canchas
+* Turnos
+* Pagos
+* Reportes históricos
 
-Flujo de Funcionamiento del Sistema
-El usuario accede desde el navegador.
-El frontend envía una solicitud al servidor (backend).
-El backend procesa la solicitud y consulta la base de datos.
-La base de datos responde con la información solicitada.
-El backend envía la respuesta al frontend.
-El frontend actualiza la interfaz en tiempo real.
-Este flujo garantiza una gestión organizada, segura y eficiente.
+Esta capa permite el acceso desde cualquier dispositivo y evita la dependencia del almacenamiento local.
 
-Justificación de la Arquitectura
-Inicialmente, el sistema utilizaba almacenamiento local (localStorage), lo que limitaba el funcionamiento a un solo dispositivo.
+---
 
-La implementación de una arquitectura Cliente-Servidor con base de datos permite:
-Acceso multiusuario.
-Persistencia real de la información.
-Mayor seguridad.
-Escalabilidad.
-Mejor control administrativo.
-Implementación profesional acorde a los estándares de Ingeniería Web.
+##  Patrón de Diseño: MVC
 
+El sistema implementa el patrón **Modelo – Vista – Controlador (MVC)** para una mejor organización.
 
- 	Beneficios de la Arquitectura Propuesta
-Organización estructurada del código.
-Mejor rendimiento y escalabilidad.
-Trabajo colaborativo eficiente.
-Reducción de errores.
-Separación clara entre interfaz y lógica.
-Sistema preparado para futuras mejoras (como pagos en línea).
+### Modelo (Model)
 
+Representa los datos del sistema: usuarios, canchas, turnos y pagos.
+
+### Vista (View)
+
+Corresponde a la interfaz desarrollada con HTML, CSS y JavaScript.
+
+### Controlador (Controller)
+
+Gestiona las solicitudes del usuario, procesa la lógica y comunica la vista con el modelo.
+
+### Beneficios del MVC
+
+* Separación de responsabilidades
+* Fácil mantenimiento
+* Mejor escalabilidad
+* Optimización del trabajo en equipo
+
+---
+
+##  Flujo de Funcionamiento
+
+1. El usuario accede desde el navegador.
+2. El frontend envía una solicitud al backend.
+3. El backend procesa la solicitud.
+4. Se consulta la base de datos.
+5. La base de datos responde.
+6. El backend envía la respuesta.
+7. El frontend actualiza la interfaz.
+
+Este flujo garantiza una gestión segura y eficiente.
+
+---
+
+##  Justificación de la Arquitectura
+
+Inicialmente, el sistema utilizaba almacenamiento local (localStorage), lo cual limitaba su uso a un solo dispositivo.
+
+Con la implementación Cliente-Servidor se logra:
+
+* Acceso multiusuario
+* Persistencia real
+* Mayor seguridad
+* Escalabilidad
+* Mejor control administrativo
+* Estándares profesionales
+
+---
+
+##  Beneficios de la Arquitectura
+
+* Código organizado
+* Mejor rendimiento
+* Trabajo colaborativo
+* Reducción de errores
+* Separación clara de responsabilidades
+* Preparación para futuras mejoras
+
+---
+
+# 🌐 Uso del DOM en el Proyecto
+
+## ¿Qué es el DOM?
+
+El DOM (Document Object Model) representa la estructura del documento HTML como un árbol de nodos que permite manipular la página desde JavaScript.
+
+Nuestro sistema utiliza el DOM para interactuar dinámicamente con los elementos del sistema.
+
+---
+
+## Selección de Elementos
+
+Se usan selectores para acceder a:
+
+* Formularios
+* Botones
+* Listas de turnos
+* Campos de búsqueda
+
+**Métodos:**
+
+* getElementById()
+* querySelector()
+* querySelectorAll()
+
+---
+
+## Modificación del DOM
+
+Permite actualizar la información en tiempo real.
+
+### Aplicaciones:
+
+* Mostrar turnos disponibles
+* Actualizar empleados
+* Cambiar estados de canchas
+* Mostrar mensajes
+
+### Técnicas:
+
+* innerText
+* innerHTML
+* classList
+* style
+
+---
+
+## Manejo de Eventos
+
+El sistema responde a las acciones del usuario mediante eventos.
+
+### Eventos:
+
+* Click
+* Submit
+* Change
+* Selección de fechas
+
+Se utiliza `addEventListener()` para:
+
+* Registrar turnos
+* Guardar datos
+* Cancelar reservas
+* Validar información
+
+---
+
+## Propagación y Delegación de Eventos
+
+Se controla la propagación usando:
+
+* event.stopPropagation()
+* event.preventDefault()
+
+Y se aplica delegación en listas dinámicas para mejorar el rendimiento.
+
+---
+
+##  Seguridad y innerHTML
+
+El uso incorrecto de `innerHTML` puede generar ataques XSS.
+
+### Medidas:
+
+* Validar entradas
+* Usar textContent
+* Limpiar datos
+* Evitar scripts externos
+
+---
+
+##  Rendimiento
+
+Buenas prácticas:
+
+* Guardar referencias del DOM
+* Evitar consultas repetidas
+* Optimizar ciclos
+* Usar fragmentos
+
+---
+
+##  Separación de Responsabilidades
+
+* HTML → Estructura
+* CSS → Diseño
+* JavaScript → Lógica
+
+Esto facilita el mantenimiento y la organización.
+
+---
+
+##  Ciclo de Vida del Documento
+
+Se controla la carga usando:
+
+* DOMContentLoaded
+* window.onload
+
+Evita errores por elementos no cargados.
+
+---
+
+##  Beneficios del Uso del DOM
+
+* Automatización de reservas
+* Control de disponibilidad
+* Gestión eficiente
+* Menos errores
+* Mejor experiencia de usuario
+
+---
+
+#  Conclusión
+
+El sistema implementa una arquitectura profesional Cliente-Servidor con patrón MVC y un uso eficiente del DOM.
+
+Esto garantiza:
+
+* Organización
+* Seguridad
+* Escalabilidad
+* Mantenimiento sencillo
+* Preparación para crecimiento futuro
+
+El proyecto cumple con los principios de Ingeniería Web y buenas prácticas de desarrollo.
 
 ---
 
