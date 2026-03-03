@@ -145,6 +145,124 @@ Requerimientos del Sistema de Gestión de Turnos y Pagos
 
 └── README.md
 
+IMPLEMENTACIÓN DE LA ARQUITECTURA QUE SE USARÁ
+
+
+ Arquitectura del Sistema
+Tipo de Arquitectura Implementada
+Para el desarrollo del Sistema de Gestión de Turnos y Pagos del Club de Tenis, se implementará una arquitectura Cliente-Servidor de Tres Capas, utilizando el patrón de diseño MVC (Modelo – Vista – Controlador).
+Esta arquitectura permite separar responsabilidades, mejorar la organización del código y facilitar el mantenimiento, escalabilidad y trabajo en equipo.
+
+
+Para el desarrollo del Sistema de Gestión de Turnos y Pagos del Club de Tenis, se adopta una Arquitectura Cliente-Servidor en Tres Capas, debido a las necesidades funcionales, de escalabilidad y de trabajo colaborativo que presenta el proyecto.
+Esta arquitectura es la más adecuada porque permite separar claramente la interfaz de usuario, la lógica del negocio y la gestión de datos, garantizando organización, mantenimiento y crecimiento futuro del sistema.
+
+  Arquitectura en Tres Capas
+El sistema estará dividido en las siguientes capas:
+FRONTEND Y BACKEND.
+
+Capa de Presentación (Frontend)
+Corresponde a la interfaz gráfica con la que interactuaran los usuarios (Administrador y Empleado).
+El club necesita visualizar en tiempo real el estado de las canchas y los turnos. Separar la interfaz del procesamiento interno permite mejorar la experiencia del usuario sin afectar la lógica del sistema.
+
+Además, al trabajar en equipo mediante GitHub, separar el frontend permite que algunos integrantes trabajen en diseño e interfaz mientras otros trabajan en la lógica interna.
+
+Está desarrollada con:
+HTML5
+CSS
+JavaScript
+
+
+Funciones principales:
+Formularios de inicio de sesión y registro.
+Visualización en tiempo real del estado de las canchas.
+Panel administrativo.
+Registro de turnos.
+Visualización de pagos.
+Generación de reportes.
+
+
+Esta capa se ejecuta en el navegador del cliente y se comunica con el servidor mediante peticiones HTTP.
+
+
+ Capa de Lógica de Negocio (Backend)
+ 
+Se encarga de procesar la información enviada desde el frontend y aplicar las reglas del sistema.
+Tecnologías utilizadas:
+Node.js
+Express.js
+
+Funciones principales:
+Autenticación y validación de usuarios.
+Registro y actualización de empleados y clientes.
+Asignación de canchas.
+Control de turnos.
+Cálculo automático de pagos.
+Generación de reportes administrativos.
+Validación de datos antes de almacenarlos.
+
+El backend actúa como intermediario entre el frontend y la base de datos, garantizando seguridad y organización en el manejo de la información.
+Capa de Datos (Base de Datos)
+
+Se utilizará una base de datos para almacenar la información de forma persistente.
+Base de datos propuesta:
+FireBase
+
+Datos almacenados:
+Usuarios (Administrador y Empleados).
+Clientes.
+Canchas.
+Turnos.
+Pagos.
+Reportes históricos.
+
+Esta capa permite que la información esté disponible desde cualquier dispositivo y no dependa del almacenamiento local del navegador.
+Patrón de Diseño: MVC (Modelo – Vista – Controlador)
+El sistema implementará el patrón MVC para organizar mejor el código:
+Modelo (Model): Representa la estructura de los datos (usuarios, canchas, turnos, pagos).
+
+
+Vista (View): Corresponde a la interfaz gráfica desarrollada en HTML, CSS y JavaScript.
+
+
+Controlador (Controller): Gestiona las peticiones del usuario, procesa la lógica del negocio y comunica la vista con el modelo.
+
+
+Este patrón permite:
+Separar responsabilidades.
+Facilitar el mantenimiento.
+Mejorar la escalabilidad.
+Optimizar el trabajo en equipo.
+
+
+Flujo de Funcionamiento del Sistema
+El usuario accede desde el navegador.
+El frontend envía una solicitud al servidor (backend).
+El backend procesa la solicitud y consulta la base de datos.
+La base de datos responde con la información solicitada.
+El backend envía la respuesta al frontend.
+El frontend actualiza la interfaz en tiempo real.
+Este flujo garantiza una gestión organizada, segura y eficiente.
+
+Justificación de la Arquitectura
+Inicialmente, el sistema utilizaba almacenamiento local (localStorage), lo que limitaba el funcionamiento a un solo dispositivo.
+
+La implementación de una arquitectura Cliente-Servidor con base de datos permite:
+Acceso multiusuario.
+Persistencia real de la información.
+Mayor seguridad.
+Escalabilidad.
+Mejor control administrativo.
+Implementación profesional acorde a los estándares de Ingeniería Web.
+
+
+ 	Beneficios de la Arquitectura Propuesta
+Organización estructurada del código.
+Mejor rendimiento y escalabilidad.
+Trabajo colaborativo eficiente.
+Reducción de errores.
+Separación clara entre interfaz y lógica.
+Sistema preparado para futuras mejoras (como pagos en línea).
 
 
 ---
